@@ -1,0 +1,4 @@
+v<%= appVersion %>:
+  date: <%= date %>
+  changes:
+    - Initial release.

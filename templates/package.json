@@ -1,0 +1,39 @@
+{
+    "name": "<%= appNameSlug %>",
+    "description": "<%= appDescription %>",
+    "version": "<%= appVersion %>",
+    "homepage": "https://github.com/<%= userName %>/<%= appNameSlug %>",
+    "author": {
+        "name": "<%= authorName %>",
+        "email": "<%= authorEmail %>"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git://github.com/<%= userName %>/<%= appNameSlug %>.git"
+    },
+    "bugs": {
+        "url": "https://github.com/<%= userName %>/<%= appNameSlug %>/issues"
+    },
+    "licenses": [{
+        "type": "<%= license %>",
+        "url": "https://github.com/<%= userName %>/<%= appNameSlug %>/blob/master/LICENSE"
+    }],
+    "main": "slushfile.js",
+    "engines": {
+        "node": ">= 0.10.26",
+        "npm": ">=1.4.3"
+    },
+    "scripts": {
+        "test": "echo \"Not have tests\""
+    },
+    "dependencies": {
+        "gulp": "~3.5.6",
+        "gulp-template": "~0.1.1",
+        "gulp-install": "~0.1.1",
+        "gulp-conflict": "~0.1.1",
+        "gulp-rename": "~1.2.0",
+        "underscore.string": "~2.3.3",
+        "inquirer": "~0.4.1"
+    },
+    "keywords": ["slushgenerator"]
+}
