@@ -16,10 +16,27 @@ var gulp = require('gulp'),
     _ = require('underscore.string'),
     inquirer = require('inquirer');
 
+var defaults = (function(){
+    var homeDir = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE,
+        workingDirName = process.cwd().split("/").pop().split("\\").pop(),
+        osUserName = homeDir && homeDir.split("/").pop() || "root",
+        config_file = homeDir + "/.gitconfig",
+        user = {};
+    if (require("fs").existsSync(config_file)) {
+        user = require("iniparser").parseSync(config_file).user;
+    }
+    return {
+        appName: workingDirName,
+        userName: user.name || osUserName,
+        authorEmail: user.email || undefined
+    };
+})();
+
 gulp.task('default', function(done) {
     var prompts = [{
         name: 'appName',
-        message: 'What the name of your slush generator?'
+        message: 'What the name of your slush generator?',
+        default: defaults.appName
     }, {
         name: 'appDescription',
         message: 'What the description?'
@@ -33,9 +50,11 @@ gulp.task('default', function(done) {
     }, {
         name: 'authorEmail',
         message: 'What the author email?',
+        default: defaults.authorEmail
     }, {
         name: 'userName',
         message: 'What the github username?',
+        default: defaults.userName
     }, {
         type: 'list',
         name: 'license',
