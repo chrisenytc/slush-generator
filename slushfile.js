@@ -16,6 +16,11 @@ var gulp = require('gulp'),
     _ = require('underscore.string'),
     inquirer = require('inquirer');
 
+function format(string) {
+    var username = string.toLowerCase();
+    return username.replace(/\s/g, '');
+};
+
 var defaults = (function(){
     var homeDir = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE,
         workingDirName = process.cwd().split("/").pop().split("\\").pop(),
@@ -27,7 +32,7 @@ var defaults = (function(){
     }
     return {
         appName: workingDirName,
-        userName: user.name || osUserName,
+        userName: format(user.name) || osUserName,
         authorEmail: user.email || undefined
     };
 })();

@@ -1,3 +1,7 @@
+v0.2.0:
+  date: 2014-04-27
+  changes:
+    - Adding feature: Default options to generator.
 v0.1.0:
   date: 2014-03-25
   changes:

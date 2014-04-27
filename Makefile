@@ -1,7 +1,7 @@
 # slush-generator
 # https://github.com/chrisenytc/slush-generator
 #
-# Copyright (c) 2014 Christopher EnyTC
+# Copyright (c) 2014, Christopher EnyTC
 # Licensed under the MIT license.
 
 
