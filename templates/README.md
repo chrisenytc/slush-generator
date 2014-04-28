@@ -10,13 +10,13 @@
 Install `<%= appNameSlug %>` globally:
 
 ```bash
-npm install -g <%= appNameSlug %>
+$ npm install -g <%= appNameSlug %>
 ```
 
 Remember to install `slush` globally as well, if you haven't already:
 
 ```bash
-npm install -g slush
+$ npm install -g slush
 ```
 
 ### Usage
@@ -24,22 +24,22 @@ npm install -g slush
 Create a new folder for your project:
 
 ```bash
-mkdir my-<%= appNameSlug %>
+$ mkdir my-<%= appNameSlug %>
 ```
 
 Run the generator from within the new folder:
 
 ```bash
-cd my-<%= appNameSlug %> && slush <%= appNameOnly %>
+$ cd my-<%= appNameSlug %> && slush <%= appNameOnly %>
 ```
 
 ## Getting To Know Slush
 
-Slush is a tool to be able to use Gulp for project scaffolding.
+Slush is a tool that uses Gulp for project scaffolding.
 
 Slush does not contain anything "out of the box", except the ability to locate installed slush generators and to run them with liftoff.
 
-To be able to provide functionality like Yeoman, see: [Yeoman like behavior below.](https://github.com/klei/slush#yeoman-like-behavior)
+To find out more about Slush, check out the [documentation](https://github.com/klei/slush).
 
 ## Contributing
 

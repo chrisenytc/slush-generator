@@ -1,6 +1,6 @@
 # Slush Generator [![Build Status](https://secure.travis-ci.org/chrisenytc/slush-generator.png?branch=master)](https://travis-ci.org/chrisenytc/slush-generator) [![NPM version](https://badge-me.herokuapp.com/api/npm/slush-generator.png)](http://badges.enytc.com/for/npm/slush-generator) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/chrisenytc/slush-generator/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
-> A [slush](http://klei.github.io/slush) generator for create slush generators.
+> A [slush](http://klei.github.io/slush) generator for creating slush generators.
 
 
 ## Getting Started
@@ -10,13 +10,13 @@
 Install `slush-generator` globally:
 
 ```bash
-npm install -g slush-generator
+$ npm install -g slush-generator
 ```
 
 Remember to install `slush` globally as well, if you haven't already:
 
 ```bash
-npm install -g slush
+$ npm install -g slush
 ```
 
 ### Usage
@@ -24,22 +24,22 @@ npm install -g slush
 Create a new folder for your project:
 
 ```bash
-mkdir my-slush-generator
+$ mkdir my-slush-generator
 ```
 
 Run the generator from within the new folder:
 
 ```bash
-cd my-slush-generator && slush generator
+$ cd my-slush-generator && slush generator
 ```
 
 ## Getting To Know Slush
 
-Slush is a tool to be able to use Gulp for project scaffolding.
+Slush is a tool that uses Gulp for project scaffolding.
 
 Slush does not contain anything "out of the box", except the ability to locate installed slush generators and to run them with liftoff.
 
-To be able to provide functionality like Yeoman, see: [Yeoman like behavior below.](https://github.com/klei/slush#yeoman-like-behavior)
+To find out more about Slush, check out the [documentation](https://github.com/klei/slush).
 
 ## Contributing
 
