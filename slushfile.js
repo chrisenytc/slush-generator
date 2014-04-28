@@ -40,25 +40,25 @@ var defaults = (function(){
 gulp.task('default', function(done) {
     var prompts = [{
         name: 'appName',
-        message: 'What the name of your slush generator?',
+        message: 'What is the name of your slush generator?',
         default: defaults.appName
     }, {
         name: 'appDescription',
-        message: 'What the description?'
+        message: 'What is the description?'
     }, {
         name: 'appVersion',
-        message: 'What the version of your slush generator?',
+        message: 'What is the version of your slush generator?',
         default: '0.1.0'
     }, {
         name: 'authorName',
-        message: 'What the author name?',
+        message: 'What is the author name?',
     }, {
         name: 'authorEmail',
-        message: 'What the author email?',
+        message: 'What is the author email?',
         default: defaults.authorEmail
     }, {
         name: 'userName',
-        message: 'What the github username?',
+        message: 'What is the github username?',
         default: defaults.userName
     }, {
         type: 'list',

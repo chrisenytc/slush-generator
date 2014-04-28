@@ -19,10 +19,10 @@ var gulp = require('gulp'),
 gulp.task('default', function(done) {
     var prompts = [{
         name: 'appName',
-        message: 'What the name of example?'
+        message: 'What is the name of example?'
     }, {
         name: 'appDescription',
-        message: 'What the description?'
+        message: 'What is the description?'
     }];
     //Ask
     inquirer.prompt(prompts,
