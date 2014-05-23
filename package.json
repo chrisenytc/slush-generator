@@ -41,6 +41,9 @@
         "mocha": "~1.14.0",
         "chai": "~1.8.0"
     },
+    "peerDependencies": {
+        "slush": ">=1.0.0"
+    },
     "engines": {
         "node": ">=0.10.26",
         "npm": ">=1.4.3"
