@@ -35,6 +35,9 @@
         "underscore.string": "^2.3.3",
         "inquirer": "^0.4.1"
     },
+    "peerDependencies": {
+        "slush": ">=1.0.0"
+    },
     "keywords": [
         "slushgenerator"
     ]
