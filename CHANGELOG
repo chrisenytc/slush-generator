@@ -1,3 +1,7 @@
+v0.2.3:
+  date: 2014-05-23
+  changes:
+    - Add slush as a peer dependency
 v0.2.2:
   date: 2014-05-8
   changes:
