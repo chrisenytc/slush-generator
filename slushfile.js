@@ -19,25 +19,25 @@ var gulp = require('gulp'),
 function format(string) {
     var username = string.toLowerCase();
     return username.replace(/\s/g, '');
-};
+}
 
-var defaults = (function(){
+var defaults = (function () {
     var homeDir = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE,
-        workingDirName = process.cwd().split("/").pop().split("\\").pop(),
-        osUserName = homeDir && homeDir.split("/").pop() || "root",
-        config_file = homeDir + "/.gitconfig",
+        workingDirName = process.cwd().split('/').pop().split('\\').pop(),
+        osUserName = homeDir && homeDir.split('/').pop() || 'root',
+        configFile = homeDir + '/.gitconfig',
         user = {};
-    if (require("fs").existsSync(config_file)) {
-        user = require("iniparser").parseSync(config_file).user;
+    if (require('fs').existsSync(configFile)) {
+        user = require('iniparser').parseSync(configFile).user;
     }
     return {
         appName: workingDirName,
         userName: format(user.name) || osUserName,
-        authorEmail: user.email || undefined
+        authorEmail: user.email || ''
     };
 })();
 
-gulp.task('default', function(done) {
+gulp.task('default', function (done) {
     var prompts = [{
         name: 'appName',
         message: 'What is the name of your slush generator?',
@@ -66,14 +66,18 @@ gulp.task('default', function(done) {
         message: 'Choose your license type',
         choices: ['MIT', 'BSD'],
         default: 'MIT'
+    }, {
+        type: 'confirm',
+        name: 'moveon',
+        message: 'Continue?'
     }];
     //Ask
     inquirer.prompt(prompts,
-        function(answers) {
-            if (!answers.appName) {
+        function (answers) {
+            if (!answers.moveon) {
                 return done();
             }
-            answers.appNameSlug = _.slugify(answers.appName)
+            answers.appNameSlug = _.slugify('Slush ' + answers.appName);
             answers.appNameOnly = answers.appNameSlug.replace('slush-', '');
             var d = new Date();
             answers.year = d.getFullYear();
@@ -86,7 +90,7 @@ gulp.task('default', function(done) {
             }
             gulp.src(files)
                 .pipe(template(answers))
-                .pipe(rename(function(file) {
+                .pipe(rename(function (file) {
                     if (answers.license === 'MIT') {
                         var mit = file.basename.replace('LICENSE_MIT', 'LICENSE');
                         file.basename = mit;
@@ -101,7 +105,7 @@ gulp.task('default', function(done) {
                 .pipe(conflict('./'))
                 .pipe(gulp.dest('./'))
                 .pipe(install())
-                .on('end', function() {
+                .on('end', function () {
                     done();
                 });
         });

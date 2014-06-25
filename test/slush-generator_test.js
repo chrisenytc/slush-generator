@@ -15,7 +15,7 @@ chai.should();
 describe('slush-generator module', function() {
     describe('#test', function() {
         it('should return a hello', function() {
-            'Hello Slush'.should.equal("Hello Slush");
+            'Hello Slush'.should.equal('Hello Slush');
         });
     });
 });

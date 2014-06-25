@@ -1,11 +1,9 @@
-# Slush Generator [![Build Status](https://secure.travis-ci.org/chrisenytc/slush-generator.png?branch=master)](https://travis-ci.org/chrisenytc/slush-generator) [![NPM version](https://badge-me.herokuapp.com/api/npm/slush-generator.png)](http://badges.enytc.com/for/npm/slush-generator) [![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/chrisenytc/slush-generator/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+# Slush Generator [![Build Status](https://secure.travis-ci.org/chrisenytc/slush-generator.png?branch=master)](https://travis-ci.org/chrisenytc/slush-generator) [![NPM version](https://badge-me.herokuapp.com/api/npm/slush-generator.png)](http://badges.enytc.com/for/npm/slush-generator)
 
 > A [slush](http://klei.github.io/slush) generator for creating slush generators.
 
 
 ## Getting Started
-
-### Installation
 
 Install `slush-generator` globally:
 

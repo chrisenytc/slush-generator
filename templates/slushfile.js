@@ -16,16 +16,50 @@ var gulp = require('gulp'),
     _ = require('underscore.string'),
     inquirer = require('inquirer');
 
+function format(string) {
+    var username = string.toLowerCase();
+    return username.replace(/\s/g, '');
+}
+
+var defaults = (function () {
+    var homeDir = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE,
+        workingDirName = process.cwd().split('/').pop().split('\\').pop(),
+        osUserName = homeDir && homeDir.split('/').pop() || 'root',
+        configFile = homeDir + '/.gitconfig',
+        user = {};
+    if (require('fs').existsSync(configFile)) {
+        user = require('iniparser').parseSync(configFile).user;
+    }
+    return {
+        appName: workingDirName,
+        userName: format(user.name) || osUserName,
+        authorEmail: user.email || ''
+    };
+})();
+
 gulp.task('default', function (done) {
     var prompts = [{
-        type: 'input',
         name: 'appName',
-        message: 'What is the name of your generator?',
-        default: gulp.args.join(' ')
+        message: 'What is the name of your project?',
+        default: defaults.appName
     }, {
-        type: 'input',
         name: 'appDescription',
-        message: 'What is the description for your generator?'
+        message: 'What is the description?'
+    }, {
+        name: 'appVersion',
+        message: 'What is the version of your project?',
+        default: '0.1.0'
+    }, {
+        name: 'authorName',
+        message: 'What is the author name?',
+    }, {
+        name: 'authorEmail',
+        message: 'What is the author email?',
+        default: defaults.authorEmail
+    }, {
+        name: 'userName',
+        message: 'What is the github username?',
+        default: defaults.userName
     }, {
         type: 'confirm',
         name: 'moveon',
