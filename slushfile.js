@@ -14,28 +14,43 @@ var gulp = require('gulp'),
     template = require('gulp-template'),
     rename = require('gulp-rename'),
     _ = require('underscore.string'),
-    inquirer = require('inquirer');
+    inquirer = require('inquirer'),
+    path = require('path');
+
 
 function format(string) {
     var username = string.toLowerCase();
     return username.replace(/\s/g, '');
 }
 
+
 var defaults = (function () {
-    var homeDir = process.env.HOME || process.env.HOMEPATH || process.env.USERPROFILE,
-        workingDirName = process.cwd().split('/').pop().split('\\').pop(),
-        osUserName = homeDir && homeDir.split('/').pop() || 'root',
-        configFile = homeDir + '/.gitconfig',
-        user = {};
+    var workingDirName = path.basename(process.cwd()),
+      homeDir, osUserName, configFile, user;
+
+    if (process.platform === 'win32') {
+        homeDir = process.env.USERPROFILE;
+        osUserName = process.env.USERNAME || path.basename(homeDir).toLowerCase();
+    }
+    else {
+        homeDir = process.env.HOME || process.env.HOMEPATH;
+        osUserName = homeDir && homeDir.split('/').pop() || 'root';
+    }
+
+    configFile = path.join(homeDir, '.gitconfig');
+    user = {};
+
     if (require('fs').existsSync(configFile)) {
         user = require('iniparser').parseSync(configFile).user;
     }
+
     return {
         appName: workingDirName,
-        userName: format(user.name) || osUserName,
+        userName: format(user.name || osUserName),
         authorEmail: user.email || ''
     };
 })();
+
 
 gulp.task('default', function (done) {
     var prompts = [{
