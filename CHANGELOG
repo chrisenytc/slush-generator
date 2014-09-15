@@ -1,3 +1,7 @@
+v0.2.5:
+  date: 2014-09-15
+  changes:
+    - Fixed crash if .gitconfig missing/user not set
 v0.2.4:
   date: 2014-06-24
   changes:
