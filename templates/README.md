@@ -1,4 +1,4 @@
-# <%= appName %> [![Build Status](https://secure.travis-ci.org/<%= userName %>/<%= appNameSlug %>.png?branch=master)](https://travis-ci.org/<%= userName %>/<%= appNameSlug %>) [![NPM version](https://badge-me.herokuapp.com/api/npm/<%= appNameSlug %>.png)](http://badges.enytc.com/for/npm/<%= appNameSlug %>)
+# Slush <%= appNameOnly %> [![Build Status](https://secure.travis-ci.org/<%= userName %>/<%= appNameSlug %>.png?branch=master)](https://travis-ci.org/<%= userName %>/<%= appNameSlug %>) [![NPM version](https://badge-me.herokuapp.com/api/npm/<%= appNameSlug %>.png)](http://badges.enytc.com/for/npm/<%= appNameSlug %>)
 
 > <%= appDescription %>
 
@@ -22,7 +22,7 @@ $ mkdir my-<%= appNameSlug %>
 Run the generator from within the new folder:
 
 ```bash
-$ cd my-<%= appNameSlug %> && slush <%= appNameOnly %>
+$ cd my-<%= appNameSlug %> && slush <%= appName %>
 ```
 
 ## Getting To Know Slush
@@ -31,7 +31,7 @@ Slush is a tool that uses Gulp for project scaffolding.
 
 Slush does not contain anything "out of the box", except the ability to locate installed slush generators and to run them with liftoff.
 
-To find out more about Slush, check out the [documentation](https://github.com/klei/slush).
+To find out more about Slush, check out the [documentation](https://github.com/slushjs/slush).
 
 ## Contributing
 

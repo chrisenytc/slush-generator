@@ -1,6 +1,6 @@
 # Slush Generator [![Build Status](https://secure.travis-ci.org/chrisenytc/slush-generator.png?branch=master)](https://travis-ci.org/chrisenytc/slush-generator) [![NPM version](https://badge-me.herokuapp.com/api/npm/slush-generator.png)](http://badges.enytc.com/for/npm/slush-generator)
 
-> A [slush](http://klei.github.io/slush) generator for creating slush generators.
+> A [slush](http://slushjs.github.io) generator for creating slush generators.
 
 
 ## Getting Started
@@ -31,7 +31,7 @@ Slush is a tool that uses Gulp for project scaffolding.
 
 Slush does not contain anything "out of the box", except the ability to locate installed slush generators and to run them with liftoff.
 
-To find out more about Slush, check out the [documentation](https://github.com/klei/slush).
+To find out more about Slush, check out the [documentation](https://github.com/slushjs/slush).
 
 ## Contributing
 
@@ -44,7 +44,7 @@ If you have any problem or suggestion please open an issue [here](https://github
 
 The MIT license
 
-Copyright (c) 2014, Christopher EnyTC
+Copyright (c) 2015, Christopher EnyTC
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation

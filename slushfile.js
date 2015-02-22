@@ -2,7 +2,7 @@
  * slush-generator
  * https://github.com/chrisenytc/slush-generator
  *
- * Copyright (c) 2014, Christopher EnyTC
+ * Copyright (c) 2015, Christopher EnyTC
  * Licensed under the MIT license.
  */
 
@@ -46,7 +46,8 @@ var defaults = (function () {
 
     return {
         appName: workingDirName,
-        userName: format(user.name || osUserName),
+        userName: osUserName || format(user.name || ''),
+        authorName: user.name || '',
         authorEmail: user.email || ''
     };
 })();
@@ -67,6 +68,7 @@ gulp.task('default', function (done) {
     }, {
         name: 'authorName',
         message: 'What is the author name?',
+        default: defaults.authorName
     }, {
         name: 'authorEmail',
         message: 'What is the author email?',
@@ -93,10 +95,10 @@ gulp.task('default', function (done) {
                 return done();
             }
             answers.appNameSlug = _.slugify('Slush ' + answers.appName);
-            answers.appNameOnly = answers.appNameSlug.replace('slush-', '');
+            answers.appNameOnly = _.capitalize(answers.appNameSlug.replace('slush-', ''));
             var d = new Date();
             answers.year = d.getFullYear();
-            answers.date = d.getFullYear() + '-' + d.getMonth() + '-' + d.getDate();
+            answers.date = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
             var files = [__dirname + '/templates/**'];
             if (answers.license === 'MIT') {
                 files.push('!' + __dirname + '/templates/LICENSE_BSD');
