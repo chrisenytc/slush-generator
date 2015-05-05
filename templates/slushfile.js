@@ -14,7 +14,8 @@ var gulp = require('gulp'),
     template = require('gulp-template'),
     rename = require('gulp-rename'),
     _ = require('underscore.string'),
-    inquirer = require('inquirer');
+    inquirer = require('inquirer'),
+    path = require('path');
 
 function format(string) {
     var username = string.toLowerCase();
