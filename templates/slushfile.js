@@ -14,6 +14,7 @@ var gulp = require('gulp'),
     template = require('gulp-template'),
     rename = require('gulp-rename'),
     _ = require('underscore.string'),
+    path = require('path'),
     inquirer = require('inquirer');
 
 function format(string) {
