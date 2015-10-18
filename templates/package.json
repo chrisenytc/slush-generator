@@ -14,10 +14,7 @@
     "bugs": {
         "url": "https://github.com/<%= userName %>/<%= appNameSlug %>/issues"
     },
-    "licenses": [{
-        "type": "<%= license %>",
-        "url": "https://github.com/<%= userName %>/<%= appNameSlug %>/blob/master/LICENSE"
-    }],
+    "license": "<%= license %>",
     "main": "slushfile.js",
     "engines": {
         "node": ">= 0.10.26",
