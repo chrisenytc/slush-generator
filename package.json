@@ -1,6 +1,6 @@
 {
     "name": "slush-generator",
-    "version": "0.2.8",
+    "version": "0.2.9",
     "description": "A slush generator for create slush generators",
     "keywords": [
         "slushgenerator",
@@ -15,10 +15,7 @@
         "email": "chrisenytc@gmail.com",
         "url": "https://github.com/chrisenytc"
     },
-    "licenses": [{
-        "type": "MIT",
-        "url": "https://github.com/chrisenytc/slush-generator/blob/master/LICENSE"
-    }],
+	"license": "MIT",
     "repository": {
         "type": "git",
         "url": "git://github.com/chrisenytc/slush-generator.git"
