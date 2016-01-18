@@ -137,7 +137,7 @@ project:
 
 ## Conventions of commit messages
 
-Addding files on repo
+Adding files on repo
 
 ```bash
 git commit -m "Add filename"
