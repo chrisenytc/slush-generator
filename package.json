@@ -1,7 +1,7 @@
 {
     "name": "slush-generator",
     "version": "0.2.10",
-    "description": "A slush generator for create slush generators",
+    "description": "A slush generator for creating slush generators",
     "keywords": [
         "slushgenerator",
         "slush",
