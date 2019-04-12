@@ -1,6 +1,6 @@
 {
     "name": "slush-generator",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "description": "A slush generator for creating slush generators",
     "keywords": [
         "slushgenerator",
@@ -25,19 +25,21 @@
         "test": "make test"
     },
     "dependencies": {
-        "slush": ">=1.0.0",
         "gulp": "~3.5.6",
-        "gulp-template": "~0.1.1",
+        "gulp-conflict": "^0.4.0",
+        "gulp-debug": "^4.0.0",
         "gulp-install": "~0.1.1",
-        "gulp-conflict": "~0.1.1",
         "gulp-rename": "~1.2.0",
-        "underscore.string": "~2.3.3",
+        "gulp-template": "~0.1.1",
+        "iniparser": "^1.0.5",
         "inquirer": "~3.3.0",
-        "iniparser": "^1.0.5"
+        "slush": ">=1.0.0",
+        "underscore.string": "~2.3.3"
     },
     "devDependencies": {
-        "mocha": "~1.14.0",
-        "chai": "~1.8.0"
+        "chai": "~1.8.0",
+        "gulp-append-prepend": "^1.0.8",
+        "mocha": "~1.14.0"
     },
     "engines": {
         "node": ">=0.10.26",

@@ -1,9 +1,5 @@
 /*
  * <%= appNameSlug %>
- * https://github.com/<%= userName %>/<%= appNameSlug %>
- *
- * Copyright (c) <%= year %>, <%= authorName %>
- * Licensed under the <%= license %> license.
  */
 
 'use strict';
@@ -15,6 +11,7 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     _ = require('underscore.string'),
     inquirer = require('inquirer'),
+    appPrepend = require('gulp-append-prepend'),
     path = require('path');
 
 function format(string) {
@@ -87,7 +84,7 @@ gulp.task('default', function (done) {
                 return done();
             }
             answers.appNameSlug = _.slugify(answers.appName);
-            gulp.src(__dirname + '/templates/**')
+            gulp.src(__dirname + '/templates/default/**')
                 .pipe(template(answers))
                 .pipe(rename(function (file) {
                     if (file.basename[0] === '_') {
