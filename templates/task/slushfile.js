@@ -1,4 +1,6 @@
+
 // Task: <%= taskName %> 
+// TODO: codes below are just example. Implement the task. 
 gulp.task('<%= taskName %>', function (done) {
     var prompts = [{
         name: 'variable1',
@@ -24,7 +26,15 @@ gulp.task('<%= taskName %>', function (done) {
             }
             // maybe do something with the answers
             // render files and append to destination
-            gulp.src(__dirname + '/templates/<%= taskName %>/**')
+            gulp.src(__dirname + '/templates/<%= taskName %>/somefile')
+                .pipe(template(answers))
+                .pipe(appPrepend.prependFile('./somefile'))
+                .pipe(gulp.dest("./"))
+                .on('end', function () {
+                    done();
+                });
+            // render some other files and write to destination
+            gulp.src([__dirname+'/templates/<%= taskName %>/otherfiles'])
                 .pipe(template(answers))
                 .pipe(rename(function (file) {
                     if (file.basename[0] === '_') {
