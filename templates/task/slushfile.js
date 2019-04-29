@@ -26,24 +26,10 @@ gulp.task('<%= taskName %>', function (done) {
             }
             // maybe do something with the answers
             // render files and append to destination
-            gulp.src(__dirname + '/templates/<%= taskName %>/somefile')
+            gulp.src(__dirname + '/templates/<%= taskName %>/**')
                 .pipe(template(answers))
-                .pipe(appPrepend.prependFile('./somefile'))
+                .pipe(appPrepend.prepend('./'))
                 .pipe(gulp.dest("./"))
-                .on('end', function () {
-                    done();
-                });
-            // render some other files and write to destination
-            gulp.src([__dirname+'/templates/<%= taskName %>/otherfiles'])
-                .pipe(template(answers))
-                .pipe(rename(function (file) {
-                    if (file.basename[0] === '_') {
-                        file.basename = '.' + file.basename.slice(1);
-                    }
-                }))
-                .pipe(conflict('./'))
-                .pipe(gulp.dest('./'))
-                .pipe(install())
                 .on('end', function () {
                     done();
                 });

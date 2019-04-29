@@ -11,7 +11,7 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     _ = require('underscore.string'),
     inquirer = require('inquirer'),
-    appPrepend = require('gulp-append-prepend'),
+    appPrepend = require('gulp-append-prepend-dir'),
     path = require('path');
 
 function format(string) {

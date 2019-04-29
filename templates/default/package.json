@@ -29,7 +29,7 @@
         "gulp-template": "^0.1.1",
         "gulp-install": "^0.1.4",
         "gulp-conflict": "^0.1.1",
-        "gulp-append-prepend": "^1.0.8",
+        "gulp-append-prepend-dir": "^1.0.0",
         "gulp-rename": "^1.2.0",
         "gulp-append": "^0.3.4",
         "underscore.string": "^2.3.3",
