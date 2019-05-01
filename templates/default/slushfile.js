@@ -4,15 +4,15 @@
 
 'use strict';
 
-var gulp = require('gulp'),
-    install = require('gulp-install'),
-    conflict = require('gulp-conflict'),
-    template = require('gulp-template'),
-    rename = require('gulp-rename'),
-    _ = require('underscore.string'),
-    inquirer = require('inquirer'),
-    appPrepend = require('gulp-append-prepend-dir'),
-    path = require('path');
+const gulp = require('gulp')
+const install = require('gulp-install')
+const conflict = require('gulp-conflict')
+const template = require('gulp-template')
+const rename = require('gulp-rename')
+const _ = require('lodash')
+const inquirer = require('inquirer')
+const appPrepend = require('gulp-append-prepend-dir')
+const path = require('path')
 
 function format(string) {
     var username = string.toLowerCase();
@@ -21,7 +21,7 @@ function format(string) {
 
 var defaults = (function () {
     var workingDirName = path.basename(process.cwd()),
-      homeDir, osUserName, configFile, user;
+        homeDir, osUserName, configFile, user;
 
     if (process.platform === 'win32') {
         homeDir = process.env.USERPROFILE;
@@ -47,8 +47,49 @@ var defaults = (function () {
     };
 })();
 
-gulp.task('default', function (done) {
-    var prompts = [{
+
+/**
+ * @param {*} srcPath - e.g. '/templates/default/**'
+ * @param {*} prompts - inquirer prompts, requires 'moveon' confirmation
+ * @param {*} answerProcessorFunc - if provided, must be a function that accepts 'answers' as parameter to process answers
+ * @param {*} conflictTransform - a node stream.Transform that solves conflict in destination dir, examples: "conflict('./')", "appPrepend.prepend('./')"
+ */
+function getDefaultActionFunction(srcPath, prompts, answerProcessorFunc, conflictTransform) {
+    return function (done) {
+        //Ask
+        inquirer
+            .prompt(prompts)
+            .then(function (answers) {
+                if (!answers.moveon) {
+                    return done();
+                }
+                if (answerProcessorFunc) {
+                    answerProcessorFunc(answers)
+                }
+                gulp.src(__dirname + srcPath, { dot: true })
+                    .pipe(template(answers, { 'interpolate': /<%=([\s\S]+?)%>/g }))
+                    .pipe(rename(function (path) {
+                        path.dirname = _.template(path.dirname)(answers)
+                        path.basename = _.template(path.basename)(answers)
+                        if (path.basename[0] === '_') {
+                            path.basename = '.' + path.basename.slice(1);
+                        }
+                    }))
+
+                    .pipe(conflictTransform)
+                    .pipe(gulp.dest('./'))
+                    .pipe(install())
+                    .on('end', function () {
+                        done();
+                    });
+            });
+    }
+}
+
+// default task
+gulp.task('default', getDefaultActionFunction(
+    '/templates/default/**',
+    [{
         name: 'appName',
         message: 'What is the name of your project?',
         default: defaults.appName
@@ -75,27 +116,7 @@ gulp.task('default', function (done) {
         type: 'confirm',
         name: 'moveon',
         message: 'Continue?'
-    }];
-    //Ask
-    inquirer
-        .prompt(prompts)
-        .then(function (answers) {
-            if (!answers.moveon) {
-                return done();
-            }
-            answers.appNameSlug = _.slugify(answers.appName);
-            gulp.src(__dirname + '/templates/default/**')
-                .pipe(template(answers))
-                .pipe(rename(function (file) {
-                    if (file.basename[0] === '_') {
-                        file.basename = '.' + file.basename.slice(1);
-                    }
-                }))
-                .pipe(conflict('./'))
-                .pipe(gulp.dest('./'))
-                .pipe(install())
-                .on('end', function () {
-                    done();
-                });
-        });
-});
+    }],
+    null,
+    conflict('./')
+))
