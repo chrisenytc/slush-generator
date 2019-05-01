@@ -25,6 +25,10 @@ Run the generator from within the new folder:
 $ cd my-slush-generator && slush generator
 ```
 
+To add a task into the generator:
+
+$ slush generator:task
+
 ## Getting To Know Slush
 
 Slush is a tool that uses Gulp for project scaffolding.

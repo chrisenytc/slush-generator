@@ -15,6 +15,8 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     _ = require('underscore.string'),
     inquirer = require('inquirer'),
+    appPrepend = require('gulp-append-prepend'),
+    fs = require('fs'),
     path = require('path');
 
 
@@ -102,11 +104,11 @@ gulp.task('default', function (done) {
             var d = new Date();
             answers.year = d.getFullYear();
             answers.date = d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate();
-            var files = [__dirname + '/templates/**'];
+            var files = [__dirname + '/templates/default/**'];
             if (answers.license === 'MIT') {
-                files.push('!' + __dirname + '/templates/LICENSE_BSD');
+                files.push('!' + __dirname + '/templates/default/LICENSE_BSD');
             } else {
-                files.push('!' + __dirname + '/templates/LICENSE_MIT');
+                files.push('!' + __dirname + '/templates/default/LICENSE_MIT');
             }
             gulp.src(files)
                 .pipe(template(answers))
@@ -130,3 +132,35 @@ gulp.task('default', function (done) {
                 });
         });
 });
+
+gulp.task('task', function (done) {
+    var prompts = [{
+        name: 'taskName',
+        message: 'What is the name of your task?'
+    },{
+        type: 'confirm',
+        name: 'moveon',
+        message: 'Continue?'
+    }
+    ];
+    //Ask
+    inquirer
+        .prompt(prompts)
+        .then(function (answers) {
+            if (!answers.moveon) {
+                return done();
+            }
+            // create an empty task folder in template
+            fs.mkdirSync('./templates/'+answers.taskName)
+            console.log("Created template dir ./templates/"+answers.taskName)
+            // append a task to slushfile.js
+            gulp.src(__dirname + '/templates/task/slushfile.js')
+                .pipe(template(answers))
+                .pipe(appPrepend.prependFile('./slushfile.js'))
+                .pipe(gulp.dest("./"))
+                .on('end', function () {
+                    done();
+                });
+        });
+        
+    });
